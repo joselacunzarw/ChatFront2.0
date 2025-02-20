@@ -1,0 +1,41 @@
+version: '3.8'
+
+services:
+  web:
+    build: 
+      context: .
+      dockerfile: Dockerfile
+      args:
+        - VITE_SUPABASE_URL=${VITE_SUPABASE_URL}
+        - VITE_SUPABASE_ANON_KEY=${VITE_SUPABASE_ANON_KEY}
+        - VITE_API_URL=${VITE_API_URL:-http://api:8000}
+        - VITE_CHAT_API_URL=${VITE_CHAT_API_URL:-http://api:8000}
+        - VITE_GOOGLE_CLIENT_ID=${VITE_GOOGLE_CLIENT_ID}
+        - VITE_APP_NAME=${VITE_APP_NAME:-UDC asistente}
+        - VITE_APP_DESCRIPTION=${VITE_APP_DESCRIPTION:-Asistente virtual de la Universidad del Chubut}
+        - VITE_ORGANIZATION_NAME=${VITE_ORGANIZATION_NAME:-Universidad del Chubut}
+        - VITE_ORGANIZATION_LOGO_URL=${VITE_ORGANIZATION_LOGO_URL:-https://udc.edu.ar/wp-content/uploads/2022/03/logo-udc.png}
+        - VITE_ASSISTANT_NAME=${VITE_ASSISTANT_NAME:-Asistente}
+        - VITE_MAX_CHAT_HISTORY=${VITE_MAX_CHAT_HISTORY:-3}
+        - VITE_PRIMARY_COLOR=${VITE_PRIMARY_COLOR:-#004A87}
+        - VITE_SECONDARY_COLOR=${VITE_SECONDARY_COLOR:-#F39200}
+        - VITE_ACCENT_COLOR=${VITE_ACCENT_COLOR:-#E30613}
+        - VITE_ENABLE_REACTIONS=${VITE_ENABLE_REACTIONS:-true}
+        - VITE_ENABLE_MESSAGE_COPY=${VITE_ENABLE_MESSAGE_COPY:-true}
+        - VITE_ENABLE_FILE_UPLOAD=${VITE_ENABLE_FILE_UPLOAD:-true}
+        - VITE_ENABLE_AUDIO_UPLOAD=${VITE_ENABLE_AUDIO_UPLOAD:-true}
+        - VITE_MAX_FILE_SIZE=${VITE_MAX_FILE_SIZE:-10485760}
+        - VITE_ALLOWED_FILE_TYPES=${VITE_ALLOWED_FILE_TYPES:-.pdf,.doc,.docx,.txt}
+        - VITE_ALLOWED_AUDIO_TYPES=${VITE_ALLOWED_AUDIO_TYPES:-audio/mp3,audio/wav,audio/ogg}
+        - VITE_MAX_AUDIO_DURATION=${VITE_MAX_AUDIO_DURATION:-300}
+        - VITE_DEV_MODE=${VITE_DEV_MODE:-false}
+    ports:
+      - "${WEB_PORT:-80}:80"
+    volumes:
+      - ./.env:/app/.env
+    networks:
+      - udcito-net
+
+networks:
+  udcito-net:
+    external: true

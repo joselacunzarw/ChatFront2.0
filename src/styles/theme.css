@@ -1,0 +1,5 @@
+:root {
+  --color-primary: var(--vite-primary-color);
+  --color-secondary: var(--vite-secondary-color);
+  --color-accent: var(--vite-accent-color);
+}
