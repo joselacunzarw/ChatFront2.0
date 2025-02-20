@@ -29,8 +29,8 @@ Un asistente virtual moderno y accesible para la Universidad del Chubut, constru
 
 1. Clona el repositorio:
    ```bash
-   git clone https://github.com/tu-usuario/udcito-chat.git
-   cd udcito-chat
+   git clone https://github.com/joselacunzarw/ChatFront2.0.git
+   cd ChatFront2.0
    ```
 
 2. Instala las dependencias:
